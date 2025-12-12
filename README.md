@@ -1,6 +1,34 @@
 # Luma Web App
 
-A modern React web application for managing the Luma platform. Features an admin dashboard for managing doctors, articles, feedback, and viewing user analytics. The app matches the theme and design of the mobile application.
+<div align="center">
+  <img src="src/assets/logo/logo-dark-purple1.png" alt="Luma Logo" width="200"/>
+  
+  A modern React web application for managing the Luma platform. Features an admin dashboard for managing doctors, articles, feedback, and viewing user analytics. The app matches the theme and design of the mobile application.
+</div>
+
+## Screenshots
+
+### Welcome Page & Dashboard
+
+<div align="center">
+  <img src="../images_web_app/welcome.png" alt="Welcome Page" width="800"/>
+</div>
+
+### Admin Dashboard
+
+<div align="center">
+  <img src="../images_web_app/dhasboard kpi.png" alt="Admin Dashboard KPIs" width="800"/>
+  
+  <img src="../images_web_app/users.png" alt="User Statistics" width="400"/>
+  <img src="../images_web_app/cities.png" alt="Cities Distribution" width="400"/>
+</div>
+
+### Content Management
+
+<div align="center">
+  <img src="../images_web_app/doctors.png" alt="Doctors Management" width="400"/>
+  <img src="../images_web_app/scientific articles.png" alt="Articles Management" width="400"/>
+</div>
 
 ## Features
 
@@ -249,3 +277,7 @@ The app uses styled-components for all styling. Colors are centralized in `src/t
 ## License
 
 ISC
+
+## Author
+
+Developed by **nermine.ouada**
