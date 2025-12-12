@@ -11,23 +11,23 @@
 ### Welcome Page & Dashboard
 
 <div align="center">
-  <img src="../images_web_app/welcome.png" alt="Welcome Page" width="800"/>
+  <img src="docs/images/welcome.png" alt="Welcome Page" width="800"/>
 </div>
 
 ### Admin Dashboard
 
 <div align="center">
-  <img src="../images_web_app/dhasboard kpi.png" alt="Admin Dashboard KPIs" width="800"/>
+  <img src="docs/images/dhasboard kpi.png" alt="Admin Dashboard KPIs" width="800"/>
   
-  <img src="../images_web_app/users.png" alt="User Statistics" width="400"/>
-  <img src="../images_web_app/cities.png" alt="Cities Distribution" width="400"/>
+  <img src="docs/images/users.png" alt="User Statistics" width="400"/>
+  <img src="docs/images/cities.png" alt="Cities Distribution" width="400"/>
 </div>
 
 ### Content Management
 
 <div align="center">
-  <img src="../images_web_app/doctors.png" alt="Doctors Management" width="400"/>
-  <img src="../images_web_app/scientific articles.png" alt="Articles Management" width="400"/>
+  <img src="docs/images/doctors.png" alt="Doctors Management" width="400"/>
+  <img src="docs/images/scientific articles.png" alt="Articles Management" width="400"/>
 </div>
 
 ## Features
