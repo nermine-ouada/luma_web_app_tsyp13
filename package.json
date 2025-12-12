@@ -1,8 +1,8 @@
 {
-  "name": "wie-tsyp13-web-app",
+  "name": "luma-web-app",
   "version": "1.0.0",
   "type": "module",
-  "description": "MERN web app for testing WIE TSYP backend API",
+  "description": "MERN web app for testing Luma backend API",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

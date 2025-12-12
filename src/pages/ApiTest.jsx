@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { usersAPI, kidsAPI, healthAPI } from "../services/api";
+import { usersAPI, healthAPI } from "../services/api";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import { colors } from "../theme/colors";
@@ -150,82 +150,6 @@ export default function ApiTest() {
                 }}
               >
                 DELETE
-              </TestButton>
-            </div>
-          </TestSection>
-        </div>
-
-        <div>
-          <TestSection>
-            <h2 style={{ color: colors.primary, marginBottom: "1rem" }}>
-              Kids API
-            </h2>
-            <div style={{ display: "flex", flexWrap: "wrap" }}>
-              <TestButton
-                onClick={() => handleTest(kidsAPI.getAll, "Get All Kids")}
-              >
-                GET All
-              </TestButton>
-              <TestButton
-                onClick={() => {
-                  const id = prompt("Enter Kid ID:");
-                  if (id)
-                    handleTest(() => kidsAPI.getById(id), `Get Kid ${id}`);
-                }}
-              >
-                GET By ID
-              </TestButton>
-              <TestButton
-                onClick={() => {
-                  const userId = prompt("Enter User ID for the kid:");
-                  if (userId) {
-                    const data = {
-                      userId,
-                      name: "Test Kid",
-                      dateOfBirth: "2020-01-01",
-                      gender: "male",
-                    };
-                    handleTest(() => kidsAPI.create(data), "Create Kid");
-                  }
-                }}
-              >
-                POST Create
-              </TestButton>
-              <TestButton
-                onClick={() => {
-                  const id = prompt("Enter Kid ID to update:");
-                  if (id) {
-                    const data = { name: "Updated Kid Name" };
-                    handleTest(
-                      () => kidsAPI.update(id, data),
-                      `Update Kid ${id}`
-                    );
-                  }
-                }}
-              >
-                PUT Update
-              </TestButton>
-              <TestButton
-                onClick={() => {
-                  const id = prompt("Enter Kid ID to delete:");
-                  if (id)
-                    handleTest(() => kidsAPI.delete(id), `Delete Kid ${id}`);
-                }}
-              >
-                DELETE
-              </TestButton>
-              <TestButton
-                onClick={() => {
-                  const userId = prompt("Enter User ID:");
-                  if (userId) {
-                    handleTest(
-                      () => kidsAPI.getByUserId(userId),
-                      `Get Kids by User ${userId}`
-                    );
-                  }
-                }}
-              >
-                GET By User
               </TestButton>
             </div>
           </TestSection>

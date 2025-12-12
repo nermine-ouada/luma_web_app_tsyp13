@@ -26,6 +26,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 2px 4px ${colors.shadowLight};
+  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
 
   &:hover {
     transform: translateY(-2px);

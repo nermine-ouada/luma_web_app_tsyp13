@@ -15,9 +15,11 @@ const Label = styled.label`
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid ${colors.borderLight};
+  border: 2px solid ${(props) => props.$borderColor || colors.borderLight};
   border-radius: 12px;
   font-size: 1rem;
+  background-color: ${(props) => props.$bgColor || colors.white};
+  color: ${(props) => props.$textColor || colors.textPrimaryLight};
   transition: all 0.3s;
 
   &:focus {
@@ -72,18 +74,29 @@ const StyledSelect = styled.select`
   }
 `;
 
-export default function Input({ label, type = "text", ...props }) {
-  const inputId = `input-${label?.toLowerCase().replace(/\s+/g, "-")}`;
+export default function Input({ label, type = "text", style, ...props }) {
+  const inputId = `input-${label?.toLowerCase().replace(/\s+/g, "-") || Math.random()}`;
+  const bgColor = style?.backgroundColor;
+  const textColor = style?.color;
+  const borderColor = style?.borderColor;
 
   return (
     <InputContainer>
       {label && <Label htmlFor={inputId}>{label}</Label>}
       {type === "textarea" ? (
-        <StyledTextarea id={inputId} {...props} />
+        <StyledTextarea id={inputId} {...props} style={style} />
       ) : type === "select" ? (
-        <StyledSelect id={inputId} {...props} />
+        <StyledSelect id={inputId} {...props} style={style} />
       ) : (
-        <StyledInput id={inputId} type={type} {...props} />
+        <StyledInput 
+          id={inputId} 
+          type={type} 
+          {...props} 
+          style={style}
+          $bgColor={bgColor}
+          $textColor={textColor}
+          $borderColor={borderColor}
+        />
       )}
     </InputContainer>
   );

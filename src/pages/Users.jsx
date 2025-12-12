@@ -81,17 +81,18 @@ export default function Users() {
   const [showModal, setShowModal] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     dateOfBirth: "",
-    address: {
-      street: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      country: "",
-    },
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    selectedSpecialNeeds: [],
+    isOnboardingComplete: false,
   });
 
   useEffect(() => {
@@ -114,17 +115,18 @@ export default function Users() {
   const handleCreate = () => {
     setEditingUser(null);
     setFormData({
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone: "",
       dateOfBirth: "",
-      address: {
-        street: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        country: "",
-      },
+      address: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "",
+      selectedSpecialNeeds: [],
+      isOnboardingComplete: false,
     });
     setShowModal(true);
   };
@@ -132,17 +134,18 @@ export default function Users() {
   const handleEdit = (user) => {
     setEditingUser(user);
     setFormData({
-      name: user.name || "",
+      firstName: user.firstName || "",
+      lastName: user.lastName || "",
       email: user.email || "",
       phone: user.phone || "",
       dateOfBirth: user.dateOfBirth ? user.dateOfBirth.split("T")[0] : "",
-      address: {
-        street: user.address?.street || "",
-        city: user.address?.city || "",
-        state: user.address?.state || "",
-        zipCode: user.address?.zipCode || "",
-        country: user.address?.country || "",
-      },
+      address: user.address || "",
+      city: user.city || "",
+      state: user.state || "",
+      zipCode: user.zipCode || "",
+      country: user.country || "",
+      selectedSpecialNeeds: user.selectedSpecialNeeds || [],
+      isOnboardingComplete: user.isOnboardingComplete || false,
     });
     setShowModal(true);
   };
@@ -192,14 +195,21 @@ export default function Users() {
         <UsersGrid>
           {users.map((user) => (
             <UserCard key={user._id}>
-              <UserName>{user.name}</UserName>
+              <UserName>
+                {user.firstName} {user.lastName}
+              </UserName>
               <UserInfo>📧 {user.email}</UserInfo>
               {user.phone && <UserInfo>📱 {user.phone}</UserInfo>}
+              {user.city && <UserInfo>📍 {user.city}</UserInfo>}
               {user.dateOfBirth && (
                 <UserInfo>
                   🎂 {new Date(user.dateOfBirth).toLocaleDateString()}
                 </UserInfo>
               )}
+              {user.selectedSpecialNeeds &&
+                user.selectedSpecialNeeds.length > 0 && (
+                  <UserInfo>🏷️ {user.selectedSpecialNeeds.join(", ")}</UserInfo>
+                )}
               <ButtonGroup>
                 <Button size="small" onClick={() => handleEdit(user)}>
                   Edit
@@ -232,15 +242,23 @@ export default function Users() {
             </ModalHeader>
             <form onSubmit={handleSubmit}>
               <Input
-                label="Name"
-                value={formData.name}
+                label="First Name *"
+                value={formData.firstName}
                 onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
+                  setFormData({ ...formData, firstName: e.target.value })
                 }
                 required
               />
               <Input
-                label="Email"
+                label="Last Name *"
+                value={formData.lastName}
+                onChange={(e) =>
+                  setFormData({ ...formData, lastName: e.target.value })
+                }
+                required
+              />
+              <Input
+                label="Email *"
                 type="email"
                 value={formData.email}
                 onChange={(e) =>
@@ -263,62 +281,51 @@ export default function Users() {
                   setFormData({ ...formData, dateOfBirth: e.target.value })
                 }
               />
-              <h3
-                style={{
-                  marginTop: "1rem",
-                  marginBottom: "0.5rem",
-                  color: colors.primary,
-                }}
-              >
-                Address
-              </h3>
               <Input
-                label="Street"
-                value={formData.address.street}
+                label="Address"
+                value={formData.address}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    address: { ...formData.address, street: e.target.value },
-                  })
+                  setFormData({ ...formData, address: e.target.value })
                 }
               />
               <Input
                 label="City"
-                value={formData.address.city}
+                value={formData.city}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    address: { ...formData.address, city: e.target.value },
-                  })
+                  setFormData({ ...formData, city: e.target.value })
                 }
               />
               <Input
                 label="State"
-                value={formData.address.state}
+                value={formData.state}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    address: { ...formData.address, state: e.target.value },
-                  })
+                  setFormData({ ...formData, state: e.target.value })
                 }
               />
               <Input
                 label="Zip Code"
-                value={formData.address.zipCode}
+                value={formData.zipCode}
                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    address: { ...formData.address, zipCode: e.target.value },
-                  })
+                  setFormData({ ...formData, zipCode: e.target.value })
                 }
               />
               <Input
                 label="Country"
-                value={formData.address.country}
+                value={formData.country}
+                onChange={(e) =>
+                  setFormData({ ...formData, country: e.target.value })
+                }
+              />
+              <Input
+                label="Special Needs (comma-separated)"
+                value={formData.selectedSpecialNeeds.join(", ")}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    address: { ...formData.address, country: e.target.value },
+                    selectedSpecialNeeds: e.target.value
+                      .split(",")
+                      .map((s) => s.trim())
+                      .filter((s) => s.length > 0),
                   })
                 }
               />
